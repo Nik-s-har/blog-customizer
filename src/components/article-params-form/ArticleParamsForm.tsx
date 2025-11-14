@@ -3,6 +3,7 @@ import { Button } from 'src/ui/button';
 import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group';
 import { Separator } from 'src/ui/separator';
+import { Text } from 'src/ui/text';
 import {
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -47,7 +48,8 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 		setIsOpen(false);
 	};
 
-	const changeState = () => {
+	const clickApplyButton = (e: React.FormEvent) => {
+		e.preventDefault();
 		const formState: ArticleStateType = {
 			fontFamilyOption,
 			fontSizeOption,
@@ -58,17 +60,13 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 		props.setState(formState);
 	};
 
-	const clickApplyButton = (e: React.FormEvent) => {
-		e.preventDefault();
-		changeState();
-	};
-
 	const clickResetButton = () => {
 		setFontFamilyOption(defaultArticleState.fontFamilyOption);
 		setFontSizeOption(defaultArticleState.fontSizeOption);
 		setFontColor(defaultArticleState.fontColor);
 		setBackgroundColor(defaultArticleState.backgroundColor);
 		setContentWidth(defaultArticleState.contentWidth);
+		props.setState(defaultArticleState);
 	};
 
 	useOutsideClickClose({
@@ -84,7 +82,15 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 			<aside
 				className={clsx(styles.container, { [styles.container_open]: isOpen })}>
 				<form className={styles.form} onSubmit={clickApplyButton}>
-					<h2 className={styles.title_h2}>Задайте параметры</h2>
+					<Text
+						as='h2'
+						size={31}
+						weight={800}
+						uppercase
+						fontStyle='Open Sans'
+						align='left'>
+						Задайте параметры
+					</Text>
 					<Select
 						selected={fontFamilyOption}
 						onChange={setFontFamilyOption}
