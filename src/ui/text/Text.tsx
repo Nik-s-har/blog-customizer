@@ -16,7 +16,7 @@ type TextProps = {
 	/** Вес шрифта */
 	weight?: 400 | 800;
 	/** Стиль шрифта */
-	fontStyle?: 'italic' | 'normal';
+	fontStyle?: 'italic' | 'normal' | 'Open Sans';
 	/** Булевая пропса, отвечающая должен ли текст быть в верхнем регистре */
 	uppercase?: boolean;
 	/** Выравнивание текста */
